@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>TOP 140 ESSENTIAL ACTION MOVIES</title>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+	<!-- Import library JQuery -->
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+	<script type="text/javascript">
+        $(function () {
+        	//Mengambil data dari file headlineScraper.json dengan fungsi $.get() JQuery
+          $.get("ScrapSelenium.json", function (obj) {
+          	//Tag tabel awal
+            var str = "<center><table class='table table-sm table-primary border=1' style='width: 1300px'>";
+  			//Judul tabel
+            str += "<tr class='bg-success'><td><b><center>No</td><td><b><center>Image</td><td><b><center>Judul</td><td><b><center>Tahun Rilis</td><td><b><center>Rate</td><td><b><center>Starring</td><td><b><center>Waktu Scraping</td></tr>";
+  			//Looping data headline dengan fungsi $.each() JQuery
+            $.each(obj, function (n, movieslist) {
+            	//Isi tabel
+                str += "<tr><td><b><center>" + (n + 1) + "</td>";
+                str += '<td><center><img src="' + movieslist.Image + '"></td>';
+              	str += "<td><center>" + movieslist.Judul + "</td>";
+              	str += "<td><center>" + movieslist.TahunRilis + "</td>";
+                str += "<td><center>" + movieslist.Rate + "</td>";
+                str += "<td><center>" + movieslist.Starring + "</td>";
+                str += "<td><center>" + movieslist.WaktuScraping + "</td></tr>";
+            });
+  			//Tag tabel penutup
+            str += "</table>";
+            //Display semua headline ke html dengan id=media
+            $("#scrapingSele_json").html(str);
+          });
+        });
+      </script>
+      
+</head>
+<body>
+	<!-- Menampilkan judul -->
+  <center>
+      <br>
+    <i><h2 class="display-4">TOP 140 Essential Action Movies</h2></i>
+    <i><h4>by : Rotten Tomatoes</h4></i>
+    <br>
+    <br>
+  </center>
+	
+	<!-- Menampilkan headline -->
+	<div id="scrapingSele_json"></div>
+  <p></p>
+</body>
+
+</html>
